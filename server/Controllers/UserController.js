@@ -98,5 +98,23 @@ const LoginUser = asyncHandler(async (req, res) => {
 		}
 	}
 });
+/*
+[Function Description] => Query user documents by name or email
 
-export { RegisterUser, LoginUser };
+/api/user?identifier=John
+*/
+const SearchUser = asyncHandler(async (req, res) => {
+	const identifier = req.query.identifier;
+	console.log(identifier);
+	const users = await userModel
+		.find({
+			$or: [
+				{ name: { $regex: identifier, $options: "i" } },
+				{ email: { $regex: identifier, $options: "i" } },
+			],
+		})
+		.find({ _id: { $ne: req.body.user._id } }); // dont include the user requesting the query in the result
+
+	res.send(users);
+});
+export { RegisterUser, LoginUser, SearchUser };
