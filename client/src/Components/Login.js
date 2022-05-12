@@ -16,11 +16,8 @@ const Login = () => {
 	const [email, setEmail] = useState();
 	const [visibility, setVisibility] = useState();
 
-	// Function to submit form
+	// Submit form
 	const SubmitForm = async () => {
-		// get global user state from context
-		const { user, setUser } = UserState();
-
 		// pop up msg if fields empty
 		if (!password || !email) {
 			alert("Fields cant be empty");
@@ -41,10 +38,7 @@ const Login = () => {
 			// save user data into local storage
 			localStorage.setItem("userData", JSON.stringify(data));
 
-			// pass user data into context (make it global state)
-			const us = JSON.parse(localStorage.getItem("userData"));
-			setUser(us);
-			console.log(`login page ${user} ${us}`);
+			console.log(`navigating to /chat`);
 			navigate("/chat");
 		} catch (error) {
 			console.log(error);
