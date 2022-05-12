@@ -1,0 +1,2 @@
+1) connect express server to react frontend 
+2) connect socket io to express server 
