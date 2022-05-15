@@ -1,10 +1,10 @@
 import express from "express";
 import dotenv from "dotenv";
-
 import connectMongo from "./config/db.js";
-
 import UserRoutes from "./routes/userRoutes.js";
 import RoomRoutes from "./routes/roomRoutes.js";
+import { Server } from "socket.io";
+import cors from "cors";
 
 // setup config file
 dotenv.config();
@@ -24,6 +24,17 @@ app.use("/api/room", RoomRoutes);
 const port = process.env.PORT || 5000;
 
 // listen for connections
-app.listen(port, () => {
+const server = app.listen(port, () => {
 	console.log(`Server listening on port ${port}`);
+});
+
+// Socket io
+const io = new Server(server, {
+	cors: {
+		origin: "https://localhost:3000",
+	},
+});
+
+io.on("connection", (socket) => {
+	console.log("a user connected");
 });
