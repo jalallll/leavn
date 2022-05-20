@@ -15,7 +15,7 @@ const asyncHandler = require("express-async-handler");
 const { getUserByEmail } = require("../helpers/getUser");
 
 // Perform validation
-const registerValidation = asyncHandler(async (req, res, next) => {
+const validateRegistration = asyncHandler(async (req, res, next) => {
 	const { name, email, password, passwordConfirmation } = req.body;
 	body("name", "Please enter a name").isLength({ min: 1 });
 	body("email", "Please enter a valid email").isEmail();
@@ -48,4 +48,4 @@ const registerValidation = asyncHandler(async (req, res, next) => {
 	next();
 });
 
-module.exports = registerValidation;
+module.exports = validateRegistration;

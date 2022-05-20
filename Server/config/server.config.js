@@ -16,7 +16,7 @@ server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
 
 // Routing
-const userRoute = require("../routes/user.route");
+const userRoute = require("../routes/user.routes");
 server.use("/user", userRoute);
 
 module.exports = server;
