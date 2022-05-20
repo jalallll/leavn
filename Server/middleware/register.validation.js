@@ -7,9 +7,6 @@ Check if password confirmation matches password
 // Validators
 const { body, validationResult } = require("express-validator");
 
-// User Model
-const UserModel = require("../models/user.model");
-
 // async handler
 const asyncHandler = require("express-async-handler");
 const { getUserByEmail } = require("../helpers/getUser");
