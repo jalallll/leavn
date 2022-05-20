@@ -1,15 +1,21 @@
 const jwt = require("jsonwebtoken");
 
-// expiresIn is in seconds
+// an int value for "expiresIn" is in seconds, 60 = 1 minute
 const accessToken = (id) => {
-	return jwt.sign({ id }, process.env.ACCESS_TOKEN_SECRET, {
-		expiresIn: 60 * 1,
-	});
+	const payload = { id };
+	const secret = process.env.ACCESS_TOKEN_SECRET;
+	const options = {
+		expiresIn: 60 * 30,
+	};
+	return jwt.sign(payload, secret, options);
 };
 const refreshToken = (id) => {
-	return jwt.sign({ id }, process.env.REFRESH_TOKEN_SECRET, {
-		expiresIn: 60 * 60,
-	});
+	const payload = { id };
+	const secret = process.env.REFRESH_TOKEN_SECRET;
+	const options = {
+		expiresIn: 60 * 60, // 1 hour
+	};
+	return jwt.sign(payload, secret, options);
 };
 
 module.exports = { accessToken, refreshToken };
