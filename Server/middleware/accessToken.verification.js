@@ -1,3 +1,7 @@
+/*
+Decode the jwt access token
+*/
+
 const jwt = require("jsonwebtoken");
 const asynchandler = require("express-async-handler");
 

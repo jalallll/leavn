@@ -1,4 +1,8 @@
 /*
+	Registration form validation
+*/
+
+/*
 Check if email is valid 
 Check if password >= 6 characters
 Check if password confirmation matches password
@@ -9,7 +13,7 @@ const { body, validationResult } = require("express-validator");
 
 // async handler
 const asyncHandler = require("express-async-handler");
-const { getUserByEmail } = require("../helpers/getUser");
+const { getUserByEmail } = require("../helpers/getUserByEmail");
 
 // Perform validation
 const validateRegistration = asyncHandler(async (req, res, next) => {

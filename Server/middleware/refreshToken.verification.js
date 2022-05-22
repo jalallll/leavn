@@ -1,3 +1,7 @@
+/*
+Decode the jwt refresh token
+*/
+
 const jwt = require("jsonwebtoken");
 
 const verifyRefreshToken = async (req, res, next) => {

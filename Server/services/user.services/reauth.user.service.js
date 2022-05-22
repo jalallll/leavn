@@ -1,3 +1,7 @@
+/*
+Generate new access token from refresh token 
+*/
+
 const {
 	generateAccessToken,
 	generateRefreshToken,

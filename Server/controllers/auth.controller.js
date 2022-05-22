@@ -1,1 +1,0 @@
-const reauthenticateUser = (req, res) => {};

@@ -5,7 +5,7 @@ const generateAccessToken = (uid) => {
 	const payload = { uid };
 	const secret = process.env.ACCESS_TOKEN_SECRET;
 	const options = {
-		expiresIn: 60 * 30,
+		expiresIn: process.env.ACCESS_TOKEN_EXPIRATION,
 		audience: uid,
 	};
 	return jwt.sign(payload, secret, options);
@@ -14,7 +14,7 @@ const generateRefreshToken = (uid) => {
 	const payload = { uid };
 	const secret = process.env.REFRESH_TOKEN_SECRET;
 	const options = {
-		expiresIn: 60 * 60, // 1 hour
+		expiresIn: process.env.REFRESH_TOKEN_EXPIRATION,
 		audience: uid,
 	};
 	return jwt.sign(payload, secret, options);

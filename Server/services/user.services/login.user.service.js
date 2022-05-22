@@ -4,10 +4,10 @@ const {
 	generateAccessToken,
 	generateRefreshToken,
 } = require("../../helpers/generateToken");
-const { getUserByEmail } = require("../../helpers/getUser");
+const { getUserByEmail } = require("../../helpers/getUserByEmail");
 
 // login user
-const loginUser = asynchandler(async (req, res) => {
+const loginUser = asynchandler(async (req, res, next) => {
 	console.log(req.body);
 	const { email, password } = req.body;
 	const user = await getUserByEmail(email);
@@ -19,21 +19,13 @@ const loginUser = asynchandler(async (req, res) => {
 	}
 	// Check if password is correct
 	const match = await bcrypt.compare(password, user.password);
-	if (match) {
-		const access_token = await generateAccessToken(user._id.toString());
-		const refresh_token = await generateRefreshToken(user._id.toString());
-		// send access & refresh token back to client
-		return res.status(200).json({
-			success: true,
-			message: "Login Successful",
-			data: {
-				uid: user._id.toString(),
-				accessToken: access_token,
-				refreshToken: refresh_token,
-			},
-		});
+	if (!match) {
+		return res.status(400).json({ error: "Incorrect password" });
 	}
-	return res.status(400).json({ error: "Incorrect password" });
+
+	const uid = user._id.toString();
+	req.body.uid = uid;
+	next();
 });
 
 module.exports = loginUser;

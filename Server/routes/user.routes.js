@@ -4,7 +4,7 @@ const validateRegistration = require("../middleware/register.validation");
 const { registerUser } = require("../controllers/user.controller");
 const { verifyAccessToken } = require("../middleware/accessToken.verification");
 const loginUser = require("../services/user.services/login.user.service");
-
+const saveRefreshToken = require("../middleware/saveRefreshToken");
 /*
   * @route POST /user/register
   * @desc Register a user
@@ -30,7 +30,7 @@ Output:
   }
 }
 */
-router.post("/register", validateRegistration, registerUser);
+router.post("/register", validateRegistration, registerUser, saveRefreshToken);
 
 /*
   * @route POST /user/login
@@ -55,6 +55,6 @@ Output:
   }
 }
 */
-router.post("/login", loginUser);
+router.post("/login", loginUser, saveRefreshToken);
 
 module.exports = router;
