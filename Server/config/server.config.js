@@ -19,5 +19,5 @@ server.use(bodyParser.json());
 server.use("/user", require("../routes/user.routes"));
 server.use("/auth", require("../routes/auth.routes"));
 server.use("/refreshToken", require("../routes/refreshToken.routes"));
-server.use("/me", require("../routes/me.routes"));
+server.use("/self", require("../routes/self.routes"));
 module.exports = server;

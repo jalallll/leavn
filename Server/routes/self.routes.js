@@ -10,7 +10,7 @@ const { FriendshipModel } = require("../models/friendship.model");
 router.use(verifyAccessToken);
 
 /*
-/me/
+/self/
 */
 
 // view your profile
