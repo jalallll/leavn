@@ -1,3 +1,7 @@
+/*
+Connect to mongo and return a mongodb instance
+*/
+
 const mongoose = require("mongoose");
 
 const mongo = async () => {

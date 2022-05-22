@@ -8,7 +8,7 @@ const asynchandler = require("express-async-handler");
 const verifyAccessToken = asynchandler(async (req, res, next) => {
 	console.log("Verifying Access Token");
 
-	if (!req.headers["authorization"]) {
+	if (!req.headers.authorization) {
 		return res.status(401).json({
 			error: "Access token is required to access this resource",
 		});
@@ -16,10 +16,9 @@ const verifyAccessToken = asynchandler(async (req, res, next) => {
 
 	try {
 		// Remove "bearer" from the access token
-		const accessToken = req.headers["authorization"].split(" ")[1];
-
+		const accessToken = req.headers.authorization.split(" ")[1];
 		// decode the access token to get the user id
-		const decodedToken = await jwt.verify(
+		const decodedToken = jwt.verify(
 			accessToken,
 			process.env.ACCESS_TOKEN_SECRET
 		);

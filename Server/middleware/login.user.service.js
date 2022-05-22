@@ -3,8 +3,8 @@ const asynchandler = require("express-async-handler");
 const {
 	generateAccessToken,
 	generateRefreshToken,
-} = require("../../helpers/generateToken");
-const { getUserByEmail } = require("../../helpers/getUserByEmail");
+} = require("../helpers/generateToken");
+const { getUserByEmail } = require("../helpers/getUserByEmail");
 
 // login user
 const loginUser = asynchandler(async (req, res, next) => {

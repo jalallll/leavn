@@ -2,7 +2,7 @@ const express = require("express");
 const {
 	verifyRefreshToken,
 } = require("../middleware/refreshToken.verification");
-const reauthenticateUser = require("../services/user.services/reauth.user.service");
+const reauthenticateUser = require("../middleware/reauth.user.service");
 const router = express.Router();
 
 // All requests to this router will

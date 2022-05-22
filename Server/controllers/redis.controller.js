@@ -1,3 +1,7 @@
+/* 
+Connect to redis and return an instance of redis client
+*/
+
 /*
 https://openbase.com/js/ioredis
 */

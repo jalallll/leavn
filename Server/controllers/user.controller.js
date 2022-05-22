@@ -1,4 +1,9 @@
-const registerUser = require("../services/user.services/register.user.service");
-const loginUser = require("../services/user.services/login.user.service");
+/*
+Return user middleware
+*/
 
-module.exports = { registerUser, loginUser };
+const registerUser = require("../middleware/register.user.service");
+const loginUser = require("../middleware/login.user.service");
+const validateRegistration = require("../middleware/register.validation");
+
+module.exports = { registerUser, loginUser, validateRegistration };

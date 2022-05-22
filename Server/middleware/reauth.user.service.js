@@ -5,7 +5,7 @@ Generate new access token from refresh token
 const {
 	generateAccessToken,
 	generateRefreshToken,
-} = require("../../helpers/generateToken");
+} = require("../helpers/generateToken");
 
 const reauthenticateUser = (req, res) => {
 	const { refreshToken, uid } = req.body;
