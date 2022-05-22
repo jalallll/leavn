@@ -42,8 +42,8 @@ const validateRegistration = asyncHandler(async (req, res, next) => {
 
 	// check if email exists
 	const user = await getUserByEmail(email);
-	if (!user) {
-		res.status(201).json({ error: "User with that email does not exist" });
+	if (user) {
+		res.status(201).json({ error: "User with that email exists" });
 	}
 
 	next();

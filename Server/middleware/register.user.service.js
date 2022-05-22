@@ -8,7 +8,7 @@ const {
 const UserModel = require("../models/user.model");
 
 const registerUser = asyncHandler(async (req, res, next) => {
-	const { name, email, password } = req.body;
+	const { name, email, username, password } = req.body;
 	bcrypt.hash(password, 10, async (err, hash) => {
 		if (err) {
 			return res.status(500).json({
@@ -16,19 +16,24 @@ const registerUser = asyncHandler(async (req, res, next) => {
 				message: "Internal server error",
 			});
 		}
-		const user = await UserModel.create({
-			name,
-			email,
-			password: hash,
-		});
 
-		if (!user) {
-			res.status(401); //if user creation fails
+		try {
+			const user = await UserModel.create({
+				name,
+				email,
+				username,
+				password: hash,
+			});
+			const uid = user._id.toString();
+			req.body = { uid };
+			next();
+		} catch (err) {
+			return res.status(500).json({
+				success: false,
+				message: "Internal server error",
+				error: err.message,
+			});
 		}
-
-		const uid = user._id.toString();
-		req.body = { uid };
-		next();
 	});
 });
 

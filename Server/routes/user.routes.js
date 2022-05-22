@@ -9,8 +9,10 @@ router.use(verifyAccessToken);
 /*
 /user/
 */
-router.get("/:uid", (req, res) => {
-	res.send(`protected user route with id: ${req.params.uid}`);
+
+// view the profile of this specific user
+router.get("/:username", (req, res) => {
+	res.send(`protected user route with username: ${req.params.username}`);
 });
 
 module.exports = router;

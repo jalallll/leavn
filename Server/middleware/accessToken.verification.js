@@ -1,5 +1,5 @@
 /*
-Decode the jwt access token
+Decode the jwt access token and save userid into req.uid
 */
 
 const jwt = require("jsonwebtoken");
@@ -22,8 +22,8 @@ const verifyAccessToken = asynchandler(async (req, res, next) => {
 			accessToken,
 			process.env.ACCESS_TOKEN_SECRET
 		);
-
-		req.uid = decodedToken;
+		// user id is stored in the audience header of token
+		req.uid = decodedToken.aud;
 		next();
 	} catch (error) {
 		const error_res = `${error.name}: ${error.message}`;
